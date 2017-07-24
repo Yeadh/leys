@@ -39,4 +39,25 @@
 			}
 		} );
 	} );
+	// Home hero image.
+	wp.customize('presley_homehero_image', function (value) {
+    value.bind(function (to) {
+        $('.home-page-title').css('background-image', 'url( '+ to +')');
+    });
+	});
+	
+	// portfolio hero image.
+	wp.customize('presley_portfoliohero_image', function (value) {
+    value.bind(function (to) {
+        $('.page-template-portfolio .page-title').css('background-image', 'url( '+ to +')');
+    });
+	});
+	// blog hero image.
+	wp.customize('presley_bloghero_image', function (value) {
+    value.bind(function (to) {
+        $('.blog .page-title').css('background-image', 'url( '+ to +')');
+    });
+	});
+
+
 } )( jQuery );

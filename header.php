@@ -14,12 +14,10 @@
 <html class="no-js" lang="en">
   <head>
     <!-- Meta Tags -->
-    <meta charset="utf-8">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Pressionate">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
   <!-- Favicon Icon -->
     <link rel="icon" href="img/favicon.png">
     <!-- Google Fonts -->
@@ -57,17 +55,19 @@
 					}
 					 else 
 					{
-						printf('<span class="site-title"><a href="%s">%s</a></span>', home_url(), esc_attr( get_bloginfo( 'name' ) ));
+						printf('<a href="%s">%s</a>', home_url(), esc_attr( get_bloginfo( 'name' ) ));
 					}
 					
 				?>
-			 
             </span>
           </div>
           <nav class="primary-nav">
-            <ul class="primary-nav-list">
-              <?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
-            </ul>
+            <?php 
+					wp_nav_menu( array( 
+						'theme_location' => 'primary',
+						'menu_class'	 => 'primary-nav'
+					) );  
+				?>
           </nav>
       </div><!-- .header-wrap -->
     </header>

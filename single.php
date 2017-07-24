@@ -6,16 +6,19 @@
  *
  * @package presley
  */
-
+get_template_part('templates/hero');
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
+<section id="blog-single">
+        <!-- container -->
+        <div class="container">
+		<div class="row">
+                <!-- start col-9 -->
+		<div class="col-md-9 animated fadeInLeft visible">
 		<?php
 		while ( have_posts() ) : the_post();
 
-			get_template_part( 'template-parts/content', get_post_format() );
+			get_template_part( 'template-parts/content', 'singular' );
 
 			the_post_navigation();
 
@@ -27,9 +30,10 @@ get_header(); ?>
 		endwhile; // End of the loop.
 		?>
 
-		</main><!-- #main -->
+		</div><!-- #main -->
+		<?php get_sidebar(); ?>
 	</div><!-- #primary -->
+</section>
 
 <?php
-get_sidebar();
 get_footer();

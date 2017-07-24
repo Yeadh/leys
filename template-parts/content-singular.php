@@ -9,11 +9,11 @@
 
 ?>
 
-<div class="col-md-6 blog-grid animated fadeInRight visible">
+
 	<div class="post-img">
 				<?php 
 			if(has_post_thumbnail()){
-				the_post_thumbnail('blog-thumb');
+				the_post_thumbnail('blog-singular');
 			}
 		?> 
 	</div>
@@ -51,5 +51,4 @@
 		</div>
 	</div>
 	<!-- END BLOG DESC -->
-</div>
 

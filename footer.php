@@ -17,27 +17,10 @@
     <footer class="custom-footer">
         <div class="container">
             <div class="copyright">
-                <p>Copyright &copy; 2017 PRESLEY. All Rights Reserved. Designed by <a href="http://pressionate.com" target="_blank">Pressionate</a>.</p>
+                <p><?php footer_text(); ?></p>
             </div>
             <ul class="list-inline f-social pad-top-20">
-                <li>
-                    <a href="#"><i class="fa fa-facebook"></i>Facebook</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-twitter"></i>Twitter</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-dribbble"></i>Dribbble</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-instagram"></i>Instagram</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-google-plus"></i>Google+</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-linkedin"></i>Linkedin</a>
-                </li>
+                <?php presley_social_share(); ?>
             </ul>
         </div>
     </footer>

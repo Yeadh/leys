@@ -49,7 +49,10 @@ function presley_setup() {
 	/***********************************************************************************************/
 	if (function_exists('add_theme_support')) {
 		add_theme_support('post-thumbnails');
+		set_post_thumbnail_size(268, 160);
 		add_image_size( 'portfolio-thumb', 540, 252, true );
+		add_image_size( 'blog-thumb', 555, 250, true );
+		add_image_size( 'blog-singular', 848, 370, true );
 	}
 		
 	
@@ -106,47 +109,45 @@ function presley_widgets_init() {
 		'name'          => esc_html__( 'Sidebar', 'presley' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here.', 'presley' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_widget' => '<div class="input-group latest-post blog-category pad-btm b-tags blog-category blog-category blog-archives">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="sidebar-heading">',
+		'after_title'   => '</h4>',
 	) );
 }
 add_action( 'widgets_init', 'presley_widgets_init' );
-
-
-
-
-
-
-
-
-
-
-/**
- * theme support
- */
-
-add_theme_support( 'custom-logo' );
-
 
 /**
  * Enqueue scripts and styles.
  */
  function presley_scripts() {
 	 wp_enqueue_style( 'presley-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'plugins', 	get_template_directory_uri() . '/css/plugins.css', array(), '1.0' );
-	wp_enqueue_style( 'style', 		get_template_directory_uri() . '/css/style.css', array(), '1.0' );
-	wp_enqueue_style( 'custom', 		get_template_directory_uri() . '/css/custom.css', array(), '1.0' );
+	wp_enqueue_style( 'plugins', 	get_template_directory_uri() . '/assets/css/plugins.css', array(), '1.0' );
+	wp_enqueue_style( 'style', 		get_template_directory_uri() . '/assets/css/style.css', array(), '1.0' );
+	wp_enqueue_style( 'custom', 		get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0' );
 
 
-	
-	wp_enqueue_script( 'vendor', 	get_template_directory_uri() . '/js/vendor/jquery-1.12.4.min.js', array('jquery'), '1.12.4', true );
-	wp_enqueue_script( 'plugin', 	get_template_directory_uri() . '/js/plugins.js', array('jquery'), '1.0', true );
-	wp_enqueue_script( 'portfolio', 	get_template_directory_uri() . '/js/portfolio.js', array('jquery'), '1.0', true );
-	wp_enqueue_script( 'main', 	get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'vendor', 	get_template_directory_uri() . '/assets/js/vendor/jquery-1.12.4.min.js', array('jquery'), '1.12.4', true );
+	wp_enqueue_script( 'plugin', 	get_template_directory_uri() . '/assets/js/plugins.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'portfolio', 	get_template_directory_uri() . '/assets/js/portfolio.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'main', 	get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'customizer', 	get_template_directory_uri() . '/assets/js/customizer.js', array('jquery'), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'presley_scripts');
+
+
+function presley_customize_css(){
+    ?>
+         <style type="text/css">
+             .home-page-title { background-image: url(<?php echo get_theme_mod('presley_homehero_image', ''); ?>); }
+             .page-template-portfolio .page-title { background-image: url(<?php echo get_theme_mod('presley_portfoliohero_image', ''); ?>); }
+             .blog .page-title { background-image: url(<?php echo get_theme_mod('presley_bloghero_image', ''); ?>); }
+			 
+         </style>
+    <?php
+}
+add_action( 'wp_head', 'presley_customize_css');
+
 
 
 //post content read more
@@ -177,6 +178,33 @@ function presley_pegination(){
 	);
 }
 
+function presley_social_share(){
+	  if( get_theme_mod( 'facebook_link' )  )
+	  {
+		echo sprintf('<li><a href="%s"><i class="fa fa-facebook"></i>Facebook</a></li>', esc_url( get_theme_mod( 'facebook_link' )  ) );
+	  }
+	  if( get_theme_mod( 'twitter_link' )  )
+	  {
+		echo sprintf('<li><a href="%s"><i class="fa fa-twitter"></i>Twitter</a></li>', esc_url( get_theme_mod( 'twitter_link' )  ) );
+	  }
+	  if( get_theme_mod( 'google_plus_link' )  )
+	  {
+		echo sprintf('<li><a href="%s"><i class="fa fa-google-plus"></i>Google+</a></li>', esc_url( get_theme_mod( 'google_plus_link' )  ) );
+	  }
+	  if( get_theme_mod( 'youtube_link' )  )
+	  {
+		echo sprintf('<li><a href="%s"><i class="fa fa-youtube"></i>Youtube</a></li>', esc_url( get_theme_mod( 'youtube_link' )  ) );
+	  }
+	  if( get_theme_mod( 'instagram_link' )  )
+	  {
+		echo sprintf('<li><a href="%s"><i class="fa fa-instagram"></i>Instagram</a></li>', esc_url( get_theme_mod( 'instagram_link' )  ) );
+	  }
+	  if( get_theme_mod( 'dribble_link' )  )
+	  {
+		echo sprintf('<li><a href="%s"><i class="fa fa-dribbble"></i>Dribbble</a></li>', esc_url( get_theme_mod( 'dribble_link' )  ) );
+	  }
+	  
+}
 	
 	
 	
@@ -197,71 +225,54 @@ function presley_pegination(){
 	
 	
 	
+add_filter('the_excerpt', function ($content){
+	$post_content = explode(" ", $content);
+	$less_content = array_slice($post_content, 0, 42);
+	$excert =  implode(" ", $less_content);
+	$excert = sprintf('<p>%s</p> <a href="%s" class="pull-right">%s</a>',$excert, get_the_permalink(),__('Read More','presley')) ;
+	return $excert;	
+});
 	
 	
-	
-	/**
-	 * Custom post type for portfolio.
-	 *
-	 */
-	function presley_register_post_type() {
-		register_post_type( 'portfolio',
+//presley blog social share
+
+function presley_blog_social_share(){
+	$urlpramarater = array(
 		array(
-		  'labels' => array(
-			'name' => __( 'Portfolio', 'presley'  ),
-			'singular_name' => __( 'Portfolio', 'presley'  ),
-			'add_new' => ('Add New Portfolio'),
-		  ),
-		  'public' => true,
-		  'supports' => array( 'title', 'editor', 'thumbnail',),
-		  'has_archive' => true,
-		)
-	  );
-	  
-			// Add Categorys for portfolio
-		$labels = array(
-			'name'              => _x( 'Filters', 'taxonomy general name', 'presley' ),
-			'singular_name'     => _x( 'Filter', 'taxonomy singular name', 'presley' ),
-			'search_items'      => __( 'Search Filter', 'presley' ),
-			'all_items'         => __( 'All Filter', 'presley' ),
-			'parent_item'       => __( 'Parent Filter', 'presley' ),
-			'parent_item_colon' => __( 'Parent Filter:', 'presley' ),
-			'edit_item'         => __( 'Edit Filter', 'presley' ),
-			'update_item'       => __( 'Update Filter', 'presley' ),
-			'add_new_item'      => __( 'Add New Filter', 'presley' ),
-			'new_item_name'     => __( 'New Filter Name', 'presley' ),
-			'menu_name'         => __( 'Filter', 'presley' ),
-		);
-		$args = array(
-			'hierarchical'      => true,
-			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_admin_column' => true,
-			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'portfolio-Filter' ),
-		);
-		register_taxonomy( 'filters', array( 'portfolio' ), $args );
-	  
-	}
-	add_action( 'init', 'presley_register_post_type' );
-
-	/*
-	* Adds terms from a custom taxonomy to post_class
-	*/
-	add_filter( 'post_class', 'presley_filter_post_class', 10, 3 );
-			function presley_filter_post_class( $classes, $class, $ID ) {
-			$taxonomy = 'filters';
-			$terms = get_the_terms( (int) $ID, $taxonomy );
-			if( !empty( $terms ) ) {
-				foreach( (array) $terms as $order => $term ) {
-					if( !in_array( $term->slug, $classes ) ) {
-					$classes[] = $term->slug;
-					}
-				}
+			'class'		=> 'facebook',
+			'phrase' 	=> 'https://www.facebook.com/sharer.php?u={url}',
+		),
+		array(
+			'class'		=> 'twitter',
+			'phrase' 	=> 'https://twitter.com/intent/tweet?url={url}&text={title}',
+		),
+		
+		array(
+			'class'		=> 'linkedin',
+			'phrase' 	=> 'https://plus.google.com/share?url={url}',
+		),
+		array(
+			'class'		=> 'google-plus',
+			'phrase' 	=> 'https://plus.google.com/share?url={url}',
+		),
+	);
+	$permalink = urlencode( wp_get_shortlink() );
+	$title =  get_the_title();
+	?>
+	
+	<div class="social-feedback">
+		<?php 
+			$urlpramarater = (array) apply_filters('presley_social_urlpramarater', $urlpramarater);
+			foreach( $urlpramarater as $pramarater)
+			{
+				$url = str_replace( array('{url}','{title}'), array($permalink, $title), $pramarater['phrase'] );
+				echo sprintf('<a class="common-btn" href="%s">%s</a>', $url, $pramarater['class']);
 			}
-			return $classes;
-		}
-
+		?>
+	</div><!-- .social-feedback -->
+	<?php
+}
+	
 
 /**
  * Implement the Custom Header feature.
@@ -287,3 +298,7 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+require_once get_template_directory() . '/inc/functions/register-cpt.php';
+require_once get_template_directory() . '/inc/functions/functions.php';
+require_once get_template_directory() . '/inc/customizer/customizer.php';
+require_once get_template_directory() . '/inc/customizer/functions.php';

@@ -160,6 +160,11 @@ span {
     -webkit-transition: ease-in-out .5s;
     -webkit-transform: scale(1.1, 1.1);
 }
+.page-title .breadcrumb-item{
+	color: #ececec!important;
+    font-size: 14px;
+    font-family: 'Rajdhani', sans-serif;
+}
 /* Color */
 .white,
 .navbar-default .nav > li > a,
@@ -474,14 +479,14 @@ img {
     padding-left: 0;
     margin-bottom: 0;
 }
-.primary-nav .menu-item {
+.primary-nav ul li {
     position: relative;
     margin-right: 30px;
 }
-.primary-nav .menu-item:last-child {
+.primary-nav ul li:last-child {
     margin-right: 0px;
 }
-.site-header .primary-nav .menu-item > a {
+.site-header .primary-nav ul li a {
     font-size: 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -491,26 +496,29 @@ img {
     align-items: center;
     font-family: 'Rajdhani', sans-serif;
 }
-.site-header .primary-nav .menu-item > a {
+.site-header .primary-nav ul li a {
     min-height: 100px;
     position: relative;
 }
-.site-header.small-height .primary-nav .menu-item > a {
+.site-header.small-height .primary-nav ul li a {
     min-height: 100px;
+}
+.primary-nav ul li a {
+    color: #333;
 }
 .primary-nav-list .menu-item > a {
     color: #dddddd;
 }
-.small-height .primary-nav-list .menu-item > a {
+.small-height .primary-nav-list ul li a {
     color: #333;
 }
 .site-header .primary-nav-list .current-menu-item > a,
-.site-header .primary-nav-list .menu-item > a:hover,
+.site-header .primary-nav-list ul li a:hover,
 .site-header .primary-nav-list .current-menu-ancestor > a {
     color: #fff;
 }
 .site-header.small-height .primary-nav-list > .current-menu-item > a,
-.site-header.small-height .primary-nav-list > .menu-item > a:hover,
+.site-header.small-height .primary-nav-list > ul li a:hover,
 .site-header.small-height .primary-nav-list > .current-menu-ancestor > a {
     color: #333;
 }
@@ -1596,11 +1604,37 @@ h4.white {
 }
 
 /* Contact */
-
+.wpcf7-form p:nth-child(4), .wpcf7-form p:nth-child(2), .wpcf7-form p:nth-child(3){
+	    width: 33.33%;
+    float: left;
+	    padding-right: 5px;
+    padding-left: 5px;
+}
+.wpcf7-form p:nth-child(4) input, .wpcf7-form p:nth-child(2) input, .wpcf7-form p:nth-child(3) input, .wpcf7-form p:nth-child(5) label{
+	width: 100%;
+}
+.wpcf7-submit{
+	background: #2b2a2a;
+    font-family: 'Inconsolata';
+    letter-spacing: 2px;
+    margin-top: 20px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    color: #ececec;
+}
 .contact-form .form-control-feedback {
     width: 30px;
     height: 42px;
 }
+.blog-sidebar ul{
+	margin-left:0px;
+	padding-left: 0px;
+}
+.blog-sidebar ul li{
+	list-style:none;
+}
+
 .contact-details p {
     margin-bottom: 0;
 }

@@ -11,17 +11,9 @@
  *
  * @package presley
  */
-
+get_template_part('templates/hero');
 get_header(); ?>
- <!-- page title -->
-    <div class="page-title">
-        <div class="overlay"></div>
-        <nav class="text-center animated fadeInUp visible">
-            <h3>HERE IS OUR LATEST WORKS</h3>
-            <a class="breadcrumb-item" href="index.html">HOME // </a>
-            <span class="breadcrumb-item active"> BLOG </span>
-        </nav>
-    </div>
+
     <!-- page title -->
 <!-- blog -->
     <section id="blog" class="blog-grid-section">
